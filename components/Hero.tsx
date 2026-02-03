@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import PixelSnow from "@/components/UI/PixelSnow";
+import TextRotator from "@/components/UI/TextRotator";
 
 export function Hero() {
   return (
@@ -36,11 +37,10 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-lg text-gray-400 max-w-lg leading-relaxed mx-auto md:mx-0">
-            A Computer Science student bridging the gap between{" "}
-            <strong className="text-white">complex algorithms</strong> and{" "}
-            <strong className="text-white">human-centric design</strong>.
-          </p>
+          <div className="text-lg text-gray-400 max-w-lg leading-relaxed mx-auto md:mx-0">
+            A Computer Science student who aims to {/* THE DYNAMIC PART */}
+            <TextRotator />
+          </div>
 
           <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
             <a
