@@ -42,7 +42,7 @@ export function About() {
                 I found my path when I stopped looking for "the answer" and
                 started building it. To me,{" "}
                 <strong className="text-white">Computer Science</strong> became
-                more than just a major, but also became the the toolkit I use to
+                more than just a major; it became the the toolkit I use to
                 navigate the world.
               </p>
 
