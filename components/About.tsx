@@ -41,8 +41,9 @@ export function About() {
               <p className="text-gray-300 leading-relaxed text-lg">
                 I found my path when I stopped looking for "the answer" and
                 started building it. To me,{" "}
-                <strong className="text-white">Computer Science</strong> is not
-                just a major—it is the toolkit I use to navigate the world.
+                <strong className="text-white">Computer Science</strong> became
+                more than just a major, but also became the the toolkit I use to
+                navigate the world.
               </p>
 
               <p className="text-gray-400 leading-relaxed mt-4">
@@ -50,10 +51,11 @@ export function About() {
                 <strong className="text-primary">
                   "Philosophy of Balance,"
                 </strong>{" "}
-                maintaining an equilibrium between rigorous academics and
-                leadership roles in the{" "}
-                <strong className="text-white">Sanggunian</strong> and{" "}
-                <strong className="text-white">Laro Loyola</strong>.
+                maintaining an equilibrium between{" "}
+                <strong className="text-white"> rigorous academics</strong>,
+                <strong className="text-white"> leisure</strong>,{" "}
+                <strong className="text-white">leadership roles</strong>, and
+                <strong className="text-white"> personal growth</strong>.
               </p>
 
               <p className="text-gray-400 leading-relaxed mt-4">
@@ -61,9 +63,9 @@ export function About() {
                 <strong className="text-white">
                   environmental sustainability
                 </strong>
-                , and <strong className="text-white">youth empowerment</strong>
-                —creating software that reduces friction in people's daily
-                lives.
+                , and <strong className="text-white">youth empowerment</strong>.
+                Eventually creating software that reduces friction in people's
+                daily lives.
               </p>
             </div>
 
@@ -95,18 +97,18 @@ export function About() {
               icon={<GraduationCap size={18} />}
               label="Education"
               value="BS Computer Science"
-              sub="Ateneo de Manila Univ."
+              sub="Ateneo de Manila University"
             />
             <InfoBlock
               icon={<Trophy size={18} />}
-              label="Awards"
-              value="J.P. Rizal Scholar"
-              sub="Full Academic Scholarship"
+              label="Scholarships"
+              value="Jose P. Rizal & EO-Ayala Scholar"
+              sub="Full University & Corporate Merit Scholarship"
             />
             <InfoBlock
               icon={<Users size={18} />}
               label="Leadership"
-              value="Sanggunian (HR)"
+              value="SOSE Sanggunian (HR)"
               sub="Laro Loyola (Secretariat)"
             />
             <InfoBlock
