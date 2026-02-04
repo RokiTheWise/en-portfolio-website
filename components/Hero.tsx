@@ -69,7 +69,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
 
             <Image
-              src="/PortPic.png"
+              src="/PortPic1.jpg"
               alt="Dexter Jethro Enriquez"
               fill
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-110"
