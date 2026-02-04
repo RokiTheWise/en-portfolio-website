@@ -29,3 +29,12 @@ body {
 
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Utility class for the animation */
+.animate-scan {
+  animation: scan 2s linear infinite;
+}
