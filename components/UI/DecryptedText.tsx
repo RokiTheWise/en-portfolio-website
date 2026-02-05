@@ -31,6 +31,7 @@ export default function DecryptedText({
   animateOn = "hover",
   ...props
 }: DecryptedTextProps) {
+  // 1. Initialize with "11111" immediately
   const [displayText, setDisplayText] = useState<string>(() => {
     if (animateOn === "view" || animateOn === "both") {
       const firstChar = characters[0] || "*";
@@ -163,9 +164,13 @@ export default function DecryptedText({
         });
       }, speed);
     } else {
-      setDisplayText(text);
-      setRevealedIndices(new Set());
-      setIsScrambling(false);
+      // 2. CRITICAL FIX: Only reset to clear text if we are NOT in "view" mode
+      // or if we have already animated once. This prevents the "Flash" on mount.
+      if (animateOn !== "view" || hasAnimated) {
+        setDisplayText(text);
+        setRevealedIndices(new Set());
+        setIsScrambling(false);
+      }
     }
 
     return () => {
@@ -180,6 +185,8 @@ export default function DecryptedText({
     revealDirection,
     characters,
     useOriginalCharsOnly,
+    animateOn, // Added dependency
+    hasAnimated, // Added dependency
   ]);
 
   useEffect(() => {
