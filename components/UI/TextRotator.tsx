@@ -18,7 +18,7 @@ export default function TextRotator() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % descriptions.length);
-    }, 2000); // Change text every 3 seconds
+    }, 4500); // Change text every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -31,8 +31,8 @@ export default function TextRotator() {
           text={descriptions[index]}
           animateOn="view"
           revealDirection="center"
-          speed={100}
-          maxIterations={20}
+          speed={150}
+          maxIterations={15}
           characters="10"
           className="text-white font-bold"
           parentClassName="inline-block"
