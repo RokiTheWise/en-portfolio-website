@@ -1,5 +1,12 @@
 import React from "react";
-import { Mail, Linkedin, Github, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  Linkedin,
+  Github,
+  ArrowRight,
+  Instagram,
+  Facebook,
+} from "lucide-react";
 import GridMotion from "@/components/UI/GridMotion";
 
 export function Contact() {
@@ -32,8 +39,8 @@ export function Contact() {
         </h2>
 
         <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg mx-auto">
-          Whether you have a project in mind or just want to discuss the latest
-          in tech, my inbox is open for high-bandwidth communication.
+          Have a project in mind? Wanna discuss the latest in tech? Whatever it
+          may be, my inbox is open for high-bandwidth communication.
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -62,6 +69,16 @@ export function Contact() {
               href="https://github.com/rokithewise"
               icon={<Github size={20} />}
               label="GitHub"
+            />
+            <SocialBtn
+              href="https://www.instagram.com/dexjet_enriquez/"
+              icon={<Instagram size={20} />}
+              label="Instagram"
+            />
+            <SocialBtn
+              href="https://www.facebook.com/dexterjethro.enriquez"
+              icon={<Facebook size={20} />}
+              label="Facebook"
             />
           </div>
         </div>
