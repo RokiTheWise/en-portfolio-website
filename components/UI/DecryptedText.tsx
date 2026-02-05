@@ -31,7 +31,17 @@ export default function DecryptedText({
   animateOn = "hover",
   ...props
 }: DecryptedTextProps) {
-  const [displayText, setDisplayText] = useState<string>(text);
+  const [displayText, setDisplayText] = useState<string>(() => {
+    if (animateOn === "view" || animateOn === "both") {
+      const firstChar = characters[0] || "*";
+      return text
+        .split("")
+        .map((char) => (char === " " ? " " : firstChar))
+        .join("");
+    }
+    return text;
+  });
+
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isScrambling, setIsScrambling] = useState<boolean>(false);
   const [revealedIndices, setRevealedIndices] = useState<Set<number>>(
@@ -219,7 +229,7 @@ export default function DecryptedText({
       {...hoverProps}
       {...props}
     >
-      <span className="sr-only">{displayText}</span>
+      <span className="sr-only">{text}</span>
 
       <span aria-hidden="true">
         {displayText.split("").map((char, index) => {
