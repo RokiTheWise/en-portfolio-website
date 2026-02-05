@@ -14,47 +14,19 @@ import {
 const PROJECTS = [
   {
     id: 1,
-    title: "Ace & Co. Accounting",
+    title: "Ace & Co. Website",
     category: "Professional Work",
     description:
-      "A comprehensive web solution for an accounting firm, featuring client portals, automated scheduling, and a high-performance marketing front-end.",
+      "A website designed for an accounting firm, featuring a high-performance marketing front-end, seamless transitions, and a responsive design.",
     tech: [
       <SiNextdotjs key="next" />,
       <SiTypescript key="ts" />,
       <SiTailwindcss key="tw" />,
     ],
-    image: "/ACE.png", // Replace with your actual image path
+    image: "/ACE.png",
     status: "Live",
     href: "#",
     isFeatured: true, // This makes it BIG
-  },
-  {
-    id: 2,
-    title: "Wakey Wakey System",
-    category: "IoT / PWA",
-    description:
-      "A Progressive Web App that remotely triggers hardware alarms via WebSockets. Solves heavy sleeper problems using real-time hardware integration.",
-    tech: [
-      <SiNodedotjs key="node" />,
-      <SiReact key="react" />,
-      <SiFramer key="motion" />,
-    ],
-    image: "/projects/wakey.jpg", // Replace with your actual image path
-    status: "Beta",
-    href: "#",
-    isFeatured: false,
-  },
-  {
-    id: 3,
-    title: "Laro Loyola",
-    category: "Game Dev / Org",
-    description:
-      "Leading the secretariat for Ateneo's premier game development organization. Managing internal tools and event sites.",
-    tech: [<SiReact key="react" />, <SiTailwindcss key="tw" />],
-    image: "/projects/laro.jpg", // Replace with your actual image path
-    status: "Active",
-    href: "#",
-    isFeatured: false,
   },
 ];
 

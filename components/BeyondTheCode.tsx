@@ -12,7 +12,7 @@ const MODULES = [
     description:
       "Bridging technical complexity with clear, human-centric delivery on stage.",
     stat: "E.I. High",
-    image: "/Host.jpeg", // Replace with your speaking photo
+    image: "/Host.jpeg",
   },
   {
     id: "write",
@@ -22,7 +22,7 @@ const MODULES = [
     description:
       "Documenting systems with the same rigor I used for award-winning publications.",
     stat: "Published",
-    image: "/Journ.jpeg", // Replace with your writing/team photo
+    image: "/Journ.jpeg",
   },
   {
     id: "research",
@@ -32,7 +32,7 @@ const MODULES = [
     description:
       "Applying empirical analysis from marine bio studies to code optimization.",
     stat: "Awarded",
-    image: "/Research.jpeg", // Replace with your lab/field photo
+    image: "/Research.jpeg",
   },
 ];
 
@@ -58,7 +58,7 @@ export function BeyondTheCode() {
               key={mod.id}
               className="h-full w-full bg-white/5 border border-white/10 hover:border-primary/50"
               gridSize={25} // Blockiness level
-              pixelColor="#FFC300" // Your Brand Yellow
+              pixelColor="#FFC300"
               // 1. THE TEXT CARD (Default)
               firstContent={
                 <div className="h-full w-full p-8 flex flex-col justify-between">
@@ -99,7 +99,6 @@ export function BeyondTheCode() {
                     className="object-cover"
                   />
 
-                  {/* Overlay to keep it looking "Hacker" and readable */}
                   <div className="absolute inset-0 bg-black/40 backdrop-grayscale-[50%] flex items-center justify-center group">
                     <div className="bg-black/70 backdrop-blur-md px-4 py-2 rounded border border-primary/50 text-primary font-mono text-xs uppercase tracking-widest">
                       // Evidence_File_0{MODULES.indexOf(mod) + 1}
