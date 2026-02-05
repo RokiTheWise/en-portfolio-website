@@ -31,8 +31,8 @@ export default function TextRotator() {
           text={descriptions[index]}
           animateOn="view"
           revealDirection="center"
-          speed={150}
-          maxIterations={15}
+          speed={100}
+          maxIterations={20}
           characters="10"
           className="text-white font-bold"
           parentClassName="inline-block"
