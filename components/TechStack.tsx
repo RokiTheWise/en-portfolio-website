@@ -33,7 +33,10 @@ const ECOSYSTEM = [
 
 export function TheArsenal() {
   return (
-    <section className="py-32 px-6 bg-background relative overflow-hidden">
+    <section
+      id="techstack"
+      className="py-32 px-6 bg-background relative overflow-hidden"
+    >
       {/* HEADER */}
       <div className="max-w-5xl mx-auto mb-16 md:text-center">
         <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-6">

@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   --background: #121212; /* Deep Charcoal */
   --foreground: rgba(255, 255, 255, 0.92); /* Soft White (~90% opacity) */
@@ -37,4 +39,8 @@ body {
 /* Utility class for the animation */
 .animate-scan {
   animation: scan 2s linear infinite;
+}
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 100px;
 }

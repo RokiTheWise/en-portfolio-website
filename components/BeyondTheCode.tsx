@@ -38,7 +38,10 @@ const MODULES = [
 
 export function BeyondTheCode() {
   return (
-    <section className="py-24 px-6 bg-background border-t border-white/5">
+    <section
+      id="beyondcoding"
+      className="py-24 px-6 bg-background border-t border-white/5"
+    >
       <div className="max-w-6xl mx-auto">
         {/* HEADER */}
         <div className="mb-16 md:text-center max-w-2xl mx-auto">

@@ -87,7 +87,7 @@ export function Contact() {
       {/* FOOTER COPYRIGHT */}
       <div className="absolute bottom-6 w-full text-center z-20">
         <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
-          © 2026 Dexter Jethro Enriquez // All Systems Nominal
+          © 2026 Dexter Jethro Enriquez // All Rights Reserved.
         </p>
       </div>
     </section>
