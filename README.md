@@ -1,15 +1,15 @@
-# ⚡ Operator Portfolio // System V1.0
+# Operator Portfolio // System V1.0
 
 ![System Status](https://img.shields.io/badge/System_Status-ONLINE-success?style=for-the-badge&logo=vercel)
 ![Security Clearance](https://img.shields.io/badge/Clearance-PUBLIC-blue?style=for-the-badge)
 
-## 📂 Mission Goals and Objectives
+## Mission Goals and Objectives
 
 > **System Note:** This repository represents my **first-ever portfolio deployment** and my **second published web development project**. It serves as a documentation of my current capabilities in the React ecosystem.
 
 I designed this site to break away from standard "Resume" templates while honing my skills. It uses a **technology-based aesthetic** to present academic achievements and technical skills as a cohesive "Operator Profile."
 
-## 🛠️ The Arsenal (Tech Stack)
+## The Arsenal (Tech Stack)
 
 | Component    | Technology                                                                                                            | Usage                                  |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------- | :------------------------------------- |
@@ -19,14 +19,14 @@ I designed this site to break away from standard "Resume" templates while honing
 | **Motion**   | ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=flat-square&logo=greensock&logoColor=white)                    | Pixel Transitions, Grid Motion         |
 | **Icons**    | **Lucide React**                                                                                                      | UI Iconography                         |
 
-## 🚀 Key Features
+## Key Features
 
 - **Bento Grid Layout:** A responsive, CSS-grid based showcase for projects (Ace & Co, etc.).
 - **Pixel Transitions:** Custom GSAP animation for revealing "Offline Capabilities" (Photos).
 - **Glitch/Scanline Effects:** CSS-based animations to reinforce the "System Operator" aesthetic.
 - **Responsive Design:** Fully optimized for mobile (iPhone SE) to Desktop (4K).
 
-## 🖥️ Local Initialization
+## Local Initialization
 
 If you wish to run this system locally for inspection:
 
