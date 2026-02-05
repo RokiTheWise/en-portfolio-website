@@ -32,10 +32,10 @@ If you wish to run this system locally for inspection:
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+git clone https://github.com/RokiTheWise/en-portfolio-website.git
 
 # 2. Navigate to directory
-cd your-repo-name
+cd en-portfolio-website
 
 # 3. Install dependencies
 npm install
