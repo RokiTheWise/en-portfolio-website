@@ -191,7 +191,7 @@ export function Navbar() {
                   href="mailto:dexterjethro.enriquez@gmail.com"
                   className="text-gray-400 hover:text-primary"
                 >
-                  <Facebook size={24} />
+                  <Mail size={24} />
                 </a>
               </div>
               <button className="w-full py-4 mt-4 rounded-xl bg-primary text-background font-bold text-lg">
