@@ -8,6 +8,7 @@ import {
   SiNodedotjs,
   SiReact,
   SiFramer,
+  SiTinkercad,
 } from "react-icons/si";
 
 // --- DATA ---
@@ -32,6 +33,42 @@ const PROJECTS = [
 
     isFeatured: true,
   },
+  {
+    id: 2,
+    title: "Portfolio V1",
+    category: "Personal Identity",
+    description:
+      "Designed to breakaway from standard portfolio templates, using a techonology-based aesthetic and immersive interactions to create a unique personal brand experience.",
+    tech: [
+      <SiNextdotjs key="next" />,
+      <SiTypescript key="ts" />,
+      <SiTailwindcss key="tw" />,
+    ],
+    image: "/PortfolioShot.png",
+    status: "Live",
+
+    href: "/",
+
+    githubUrl: "https://github.com/RokiTheWise/en-portfolio-website",
+
+    isFeatured: false,
+  },
+  {
+    id: 3,
+    title: "Majority Voter Circuit",
+    category: "Electronics",
+    description:
+      "A digital logic circuit designed to implement a majority voter function using Tinkercad.",
+    tech: [<SiTinkercad key="tinkercad" />],
+    image: "/Circuit.png",
+    status: "Live",
+
+    href: "https://www.tinkercad.com/things/55OzGJMnEK3-3-input-majority-voter",
+
+    githubUrl: null,
+
+    isFeatured: false,
+  },
 ];
 
 export function Projects() {
@@ -49,9 +86,8 @@ export function Projects() {
           </h2>
         </div>
 
-        {/* 👇 VIEW ARCHIVE BUTTON RESTORED HERE 👇 */}
         <a
-          href="/archive" // Change this to your actual archive page route later
+          href="/archive"
           className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2" // Added pb-2 to align visually with the large text
         >
           <span className="text-sm font-mono uppercase tracking-wider">
