@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 
@@ -37,6 +38,26 @@ const ARCHIVE = [
   },
 ];
 
+// --- ANIMATION CONFIG ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4 },
+  },
+};
+
 export default function Archive() {
   return (
     <main className="min-h-screen bg-background text-white selection:bg-primary selection:text-background">
@@ -44,7 +65,12 @@ export default function Archive() {
 
       <div className="max-w-6xl mx-auto px-6 py-32">
         {/* HEADER */}
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
           <Link
             href="/#projects"
             className="group inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-colors mb-6 text-sm font-mono uppercase tracking-wider"
@@ -63,7 +89,7 @@ export default function Archive() {
             A complete log of deployed systems, experiments, and academic
             coursework.
           </p>
-        </div>
+        </motion.div>
 
         {/* DATABASE TABLE */}
         <div className="overflow-x-auto">
@@ -78,10 +104,16 @@ export default function Archive() {
               </tr>
             </thead>
 
-            <tbody>
+            {/* ANIMATED BODY */}
+            <motion.tbody
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {ARCHIVE.map((item, idx) => (
-                <tr
+                <motion.tr
                   key={idx}
+                  variants={rowVariants}
                   className="group border-b border-white/5 hover:bg-white/5 transition-colors"
                 >
                   {/* Year */}
@@ -89,10 +121,9 @@ export default function Archive() {
                     {item.year}
                   </td>
 
-                  {/* Project Name & Image (Merged Column) */}
+                  {/* Project Name & Image */}
                   <td className="py-4 px-4 align-top">
                     <div className="flex items-start gap-4">
-                      {/* 3. THE THUMBNAIL */}
                       <div className="relative w-24 h-14 shrink-0 rounded-lg overflow-hidden border border-white/10 hidden sm:block">
                         <Image
                           src={item.image}
@@ -102,13 +133,10 @@ export default function Archive() {
                         />
                       </div>
 
-                      {/* Title Text */}
                       <div>
                         <span className="font-bold text-lg text-white group-hover:text-primary transition-colors block">
                           {item.project}
                         </span>
-
-                        {/* Mobile Context (Visible only on small screens) */}
                         <div className="md:hidden text-xs text-gray-500 mt-1">
                           {item.madeAt}
                         </div>
@@ -116,7 +144,7 @@ export default function Archive() {
                     </div>
                   </td>
 
-                  {/* Context (Desktop) */}
+                  {/* Context */}
                   <td className="py-4 px-4 align-top hidden md:table-cell text-gray-400 text-sm pt-6">
                     {item.madeAt}
                   </td>
@@ -163,9 +191,9 @@ export default function Archive() {
                       )}
                     </div>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
-            </tbody>
+            </motion.tbody>
           </table>
         </div>
       </div>

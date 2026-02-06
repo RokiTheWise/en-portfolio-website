@@ -1,5 +1,8 @@
+"use client"; // Required for Framer Motion
+
 import React from "react";
 import Image from "next/image";
+import { motion, Variants } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import {
   SiNextdotjs,
@@ -26,11 +29,8 @@ const PROJECTS = [
     ],
     image: "/ACE.png",
     status: "Live",
-
     href: "https://www.aceandco.org",
-
     githubUrl: null,
-
     isFeatured: true,
   },
   {
@@ -46,11 +46,8 @@ const PROJECTS = [
     ],
     image: "/PortfolioShot.png",
     status: "Live",
-
     href: "/",
-
     githubUrl: "https://github.com/RokiTheWise/en-portfolio-website",
-
     isFeatured: false,
   },
   {
@@ -62,20 +59,42 @@ const PROJECTS = [
     tech: [<SiTinkercad key="tinkercad" />],
     image: "/Circuit.png",
     status: "Live",
-
     href: "https://www.tinkercad.com/things/55OzGJMnEK3-3-input-majority-voter",
-
     githubUrl: null,
-
     isFeatured: false,
   },
 ];
 
+// --- ANIMATION VARIANTS ---
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export function Projects() {
   return (
     <section id="projects" className="py-32 px-6 relative w-full">
-      {/* HEADER */}
-      <div className="max-w-6xl mx-auto mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6"
+      >
         <div>
           <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-6">
             <span className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
@@ -88,7 +107,7 @@ export function Projects() {
 
         <a
           href="/archive"
-          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2" // Added pb-2 to align visually with the large text
+          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2"
         >
           <span className="text-sm font-mono uppercase tracking-wider">
             View Project Archive
@@ -98,25 +117,35 @@ export function Projects() {
             className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
           />
         </a>
-      </div>
-
+      </motion.div>
       {/* GRID */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         {PROJECTS.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <motion.div
+            key={project.id}
+            variants={cardVariants}
+            className={project.isFeatured ? "md:col-span-2" : ""}
+          >
+            <ProjectCard project={project} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
 
-// --- UPDATED CARD COMPONENT ---
 function ProjectCard({ project }: { project: any }) {
   return (
     <div
-      className={`group relative overflow-hidden rounded-3xl bg-surface border border-white/10 hover:border-primary/50 transition-all duration-500 ${
+      className={`group relative overflow-hidden rounded-3xl bg-surface border border-white/10 hover:border-primary/50 transition-all duration-500 h-full ${
         project.isFeatured
-          ? "md:col-span-2 aspect-[16/9] md:aspect-[21/9]"
+          ? "aspect-[16/9] md:aspect-[21/9]"
           : "aspect-[4/3] md:aspect-[4/3]"
       }`}
     >
@@ -126,7 +155,7 @@ function ProjectCard({ project }: { project: any }) {
         className="absolute inset-0 z-20"
       />
 
-      {/* 2. IMAGE BACKGROUND */}
+      {/* IMAGE BACKGROUND */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#1a1a1a]" />
         <Image
@@ -138,9 +167,9 @@ function ProjectCard({ project }: { project: any }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
       </div>
 
-      {/* 3. CONTENT OVERLAY */}
+      {/* CONTENT OVERLAY */}
       <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start pointer-events-none">
-        {/* BUTTONS: Visible on Mobile, Slide-in on Desktop */}
+        {/* BUTTONS: Mobile Visible / Desktop Slide */}
         <div
           className="absolute top-6 right-6 flex gap-2 transition-all duration-500 delay-100 z-30 pointer-events-auto 
           opacity-100 translate-y-0 
@@ -187,7 +216,7 @@ function ProjectCard({ project }: { project: any }) {
             {project.description}
           </p>
 
-          {/* TECH STACK: Visible on Mobile, Slide-up on Desktop */}
+          {/* TECH STACK: Mobile Visible / Desktop Slide */}
           <div
             className="flex gap-4 text-2xl text-gray-500 transition-all duration-500 delay-75 
             translate-y-0 opacity-100 

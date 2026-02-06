@@ -1,12 +1,8 @@
+"use client";
+
 import React from "react";
-import {
-  Mail,
-  Linkedin,
-  Github,
-  ArrowRight,
-  Instagram,
-  Facebook,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, Github, Instagram, Facebook } from "lucide-react";
 import GridMotion from "@/components/UI/GridMotion";
 
 export function Contact() {
@@ -15,6 +11,7 @@ export function Contact() {
       id="contact"
       className="relative w-full h-[600px] overflow-hidden bg-background flex items-center justify-center"
     >
+      {/* BACKGROUND ANIMATION */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <GridMotion
           items={["Open to Work", "Let's Build", "Contact Me", "System Ready"]}
@@ -25,25 +22,52 @@ export function Contact() {
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background z-10 pointer-events-none"></div>
       <div className="absolute inset-0 bg-background/60 backdrop-blur-[1px] z-10 pointer-events-none"></div>
 
+      {/* MAIN CONTENT CONTAINER */}
       <div className="relative z-20 max-w-2xl mx-auto px-6 text-center">
-        <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-mono font-medium text-primary mb-8 animate-pulse">
-          <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-mono font-medium text-primary mb-8"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
           System Status: Online
-        </div>
+        </motion.div>
 
-        <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8">
+        {/* 2. HEADLINE (Slide Up) */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8"
+        >
           Ready to <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary/50">
             Initialize?
           </span>
-        </h2>
+        </motion.h2>
 
-        <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg mx-auto"
+        >
           Have a project in mind? Wanna discuss the latest in tech? Whatever it
           may be, my inbox is open for high-bandwidth communication.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+        {/* 4. BUTTONS (Slide Up) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex flex-col md:flex-row items-center justify-center gap-4"
+        >
           {/* PRIMARY BUTTON: EMAIL */}
           <a
             href="mailto:dexterjethro.enriquez@gmail.com"
@@ -59,7 +83,9 @@ export function Contact() {
           </a>
 
           {/* SECONDARY BUTTONS: SOCIALS */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
+            {" "}
+            {/* Added flex-wrap for safety */}
             <SocialBtn
               href="https://linkedin.com/in/dexter-jethro-enriquez-982a062ab"
               icon={<Linkedin size={20} />}
@@ -81,10 +107,9 @@ export function Contact() {
               label="Facebook"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* FOOTER COPYRIGHT */}
       <div className="absolute bottom-6 w-full text-center z-20">
         <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
           © 2026 Dexter Jethro Enriquez // All Rights Reserved.
@@ -94,7 +119,6 @@ export function Contact() {
   );
 }
 
-// --- MICRO-COMPONENT: SOCIAL BUTTON ---
 function SocialBtn({
   href,
   icon,
@@ -109,7 +133,7 @@ function SocialBtn({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
+      className="flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-primary/50 hover:bg-primary/10 hover:scale-110 transition-all duration-300" // Added hover:scale-110 for better tactile feel
       aria-label={label}
     >
       {icon}

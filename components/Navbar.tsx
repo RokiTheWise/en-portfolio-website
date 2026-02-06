@@ -8,7 +8,6 @@ import {
   Github,
   Linkedin,
   FileText,
-  Terminal,
   Instagram,
   Facebook,
   Mail,
@@ -20,7 +19,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Detect scroll to toggle the glass effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -30,10 +28,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "TechStack", href: "#techstack" },
-    { name: "Projects", href: "#projects" },
-    { name: "Beyond Coding", href: "#beyondcoding" },
+    { name: "About", href: "/#about" },
+    { name: "TechStack", href: "/#techstack" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Beyond Coding", href: "/#beyondcoding" },
   ];
 
   return (
@@ -41,14 +39,14 @@ export function Navbar() {
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4"
+            ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-3"
             : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           {/* 1. LOGO */}
           <Link href="/" className="group flex items-center gap-2">
-            <div className="relative h-10 w-10 group-hover:rotate-12 transition-transform duration-300">
+            <div className="relative h-9 w-9 group-hover:rotate-12 transition-transform duration-300">
               <Image
                 src="/LogoLightTrans.png"
                 alt="Dexter Jethro Logo"
@@ -56,7 +54,7 @@ export function Navbar() {
                 className="object-contain"
               />
             </div>
-            <span className="font-bold text-white tracking-tight hidden sm:block">
+            <span className="font-bold text-white tracking-tight hidden sm:block text-lg">
               Dex<span className="text-primary">Dev</span>
             </span>
           </Link>
@@ -69,7 +67,6 @@ export function Navbar() {
                 href={link.href}
                 className="relative text-sm font-medium text-gray-300 hover:text-primary transition-colors font-mono group"
               >
-                {/* The < > decoration effect on hover */}
                 <span className="absolute -left-3 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
                   &lt;
                 </span>
@@ -82,57 +79,46 @@ export function Navbar() {
           </nav>
 
           {/* 3. SOCIALS & RESUME */}
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-3 border-r border-white/10 pr-4 mr-1">
-              <a
+          <div className="hidden md:flex items-center gap-5">
+            {/* Social Icons (Restored) */}
+            <div className="flex items-center gap-4 border-r border-white/10 pr-5">
+              <SocialIcon
                 href="https://github.com/RokiTheWise"
-                target="_blank"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Github size={18} />
-              </a>
-              <a
+                icon={<Github size={18} />}
+              />
+              <SocialIcon
                 href="https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/"
-                target="_blank"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Linkedin size={18} />
-              </a>
-              <a
+                icon={<Linkedin size={18} />}
+              />
+              <SocialIcon
                 href="https://www.instagram.com/dexjet_enriquez/"
-                target="_blank"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Instagram size={18} />
-              </a>
-              <a
+                icon={<Instagram size={18} />}
+              />
+              <SocialIcon
                 href="https://www.facebook.com/dexterjethro.enriquez/"
-                target="_blank"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Facebook size={18} />
-              </a>
-              <a
+                icon={<Facebook size={18} />}
+              />
+              <SocialIcon
                 href="mailto:dexterjethro.enriquez@gmail.com"
-                target="_blank"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Mail size={18} />
-              </a>
+                icon={<Mail size={18} />}
+              />
             </div>
 
+            {/* Resume Button */}
             <a
               href="/resume.pdf"
-              className="flex items-center gap-2 px-4 py-2 rounded bg-surface border border-white/10 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/5 hover:border-primary/50 transition-all group"
+              target="_blank"
+              className="flex items-center gap-2 px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-white hover:bg-primary hover:text-black hover:border-primary transition-all group"
             >
               <FileText
                 size={14}
-                className="text-primary group-hover:scale-110 transition-transform"
+                className="text-primary group-hover:text-black transition-colors"
               />
               Resume
             </a>
           </div>
 
+          {/* MOBILE TOGGLE */}
           <button
             className="md:hidden text-gray-300 hover:text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -142,6 +128,7 @@ export function Navbar() {
         </div>
       </header>
 
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -156,51 +143,75 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-bold text-white hover:text-primary transition-colors"
+                  className="text-2xl font-bold text-white hover:text-primary transition-colors font-mono"
                 >
                   {link.name}
                 </Link>
               ))}
               <div className="w-full h-px bg-white/10 my-4" />
+
               <div className="flex justify-center gap-6">
-                <a
+                <SocialIconMobile
                   href="https://github.com/RokiTheWise"
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <Github size={24} />
-                </a>
-                <a
+                  icon={<Github size={24} />}
+                />
+                <SocialIconMobile
                   href="https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/"
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <Linkedin size={24} />
-                </a>
-                <a
+                  icon={<Linkedin size={24} />}
+                />
+                <SocialIconMobile
                   href="https://www.instagram.com/dexjet_enriquez/"
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <Instagram size={24} />
-                </a>
-                <a
+                  icon={<Instagram size={24} />}
+                />
+                <SocialIconMobile
                   href="https://www.facebook.com/dexterjethro.enriquez/"
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <Facebook size={24} />
-                </a>
-                <a
-                  href="mailto:dexterjethro.enriquez@gmail.com"
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <Mail size={24} />
-                </a>
+                  icon={<Facebook size={24} />}
+                />
               </div>
-              <button className="w-full py-4 mt-4 rounded-xl bg-primary text-background font-bold text-lg">
+
+              <a
+                href="/resume.pdf"
+                className="w-full py-4 mt-4 rounded-xl bg-primary text-background font-bold text-lg hover:bg-[#FFD54F] transition-colors"
+              >
                 Download Resume
-              </button>
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+// --- HELPER COMPONENTS (Keeps main code clean) ---
+function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-white hover:scale-110 transition-all"
+    >
+      {icon}
+    </a>
+  );
+}
+
+function SocialIconMobile({
+  href,
+  icon,
+}: {
+  href: string;
+  icon: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-primary transition-colors"
+    >
+      {icon}
+    </a>
   );
 }
