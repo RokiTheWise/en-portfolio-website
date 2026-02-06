@@ -1,7 +1,7 @@
 import React from "react";
 import { Mic, Microscope, Feather } from "lucide-react";
 import Image from "next/image";
-import PixelCard from "@/components/UI/PixelCard"; // Import the new component
+import PixelCard from "@/components/UI/PixelCard";
 
 const MODULES = [
   {
@@ -49,22 +49,21 @@ export function BeyondTheCode() {
             Offline <span className="text-primary">Capabilities</span>
           </h2>
           <p className="text-gray-400">
-            A system is only as good as its operator. Hover to decrypt the human
-            data files.
+            A system is only as good as its operator.{" "}
+            <span className="hidden md:inline">Hover</span>
+            <span className="md:hidden">Tap</span> to reveal image.
           </p>
         </div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[400px] md:h-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {MODULES.map((mod) => (
             <PixelCard
               key={mod.id}
-              className="h-full w-full bg-white/5 border border-white/10 hover:border-primary/50"
-              gridSize={25} // Blockiness level
+              className="h-[400px] md:h-[450px] w-full bg-white/5 border border-white/10 hover:border-primary/50"
+              gridSize={25}
               pixelColor="#FFC300"
-              // 1. THE TEXT CARD (Default)
               firstContent={
-                <div className="h-full w-full p-8 flex flex-col justify-between">
+                <div className="h-full w-full p-6 md:p-8 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-6">
                       <div className="p-3 rounded-lg bg-primary/10 text-primary">
@@ -87,21 +86,20 @@ export function BeyondTheCode() {
 
                   <div className="flex items-center gap-2 text-primary/50 text-xs font-mono uppercase">
                     <div className="w-2 h-2 bg-primary/50 rounded-full animate-pulse"></div>
-                    Hover to Reveal
+                    <span className="md:hidden">Tap to reveal image</span>
+                    <span className="hidden md:inline">Hover to Reveal</span>
                   </div>
                 </div>
               }
-              // 2. THE PHOTO EVIDENCE (Hover)
+              // 2. THE PHOTO EVIDENCE (Hover/Tap)
               secondContent={
                 <div className="relative h-full w-full">
-                  {/* The Image */}
                   <Image
                     src={mod.image}
                     alt={mod.title}
                     fill
                     className="object-cover"
                   />
-
                   <div className="absolute inset-0 bg-black/40 backdrop-grayscale-[50%] flex items-center justify-center group">
                     <div className="bg-black/70 backdrop-blur-md px-4 py-2 rounded border border-primary/50 text-primary font-mono text-xs uppercase tracking-widest">
                       // Evidence_File_0{MODULES.indexOf(mod) + 1}

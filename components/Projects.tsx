@@ -91,7 +91,7 @@ export function Projects() {
           className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2" // Added pb-2 to align visually with the large text
         >
           <span className="text-sm font-mono uppercase tracking-wider">
-            View Archive
+            View Project Archive
           </span>
           <ArrowUpRight
             size={18}
@@ -120,7 +120,6 @@ function ProjectCard({ project }: { project: any }) {
           : "aspect-[4/3] md:aspect-[4/3]"
       }`}
     >
-      {/* 1. CLICKABLE CARD LINK (Optional: Makes whole card clickable) */}
       <a
         href={project.href}
         target="_blank"
@@ -141,9 +140,12 @@ function ProjectCard({ project }: { project: any }) {
 
       {/* 3. CONTENT OVERLAY */}
       <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start pointer-events-none">
-        {/* BUTTONS (Now with Z-Index 30 to sit ABOVE the card link) */}
-        <div className="absolute top-6 right-6 flex gap-2 opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 z-30 pointer-events-auto">
-          {/* CONDITIONAL GITHUB BUTTON */}
+        {/* BUTTONS: Visible on Mobile, Slide-in on Desktop */}
+        <div
+          className="absolute top-6 right-6 flex gap-2 transition-all duration-500 delay-100 z-30 pointer-events-auto 
+          opacity-100 translate-y-0 
+          md:opacity-0 md:-translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+        >
           {project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -155,7 +157,6 @@ function ProjectCard({ project }: { project: any }) {
             </a>
           )}
 
-          {/* LIVE LINK BUTTON */}
           <a
             href={project.href}
             target="_blank"
@@ -167,7 +168,7 @@ function ProjectCard({ project }: { project: any }) {
         </div>
 
         {/* TEXT CONTENT */}
-        <div className="relative z-10 w-full transform transition-transform duration-500 group-hover:-translate-y-2">
+        <div className="relative z-10 w-full transform transition-transform duration-500 md:group-hover:-translate-y-2">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-primary text-xs font-mono uppercase tracking-wider font-bold">
               {project.status}
@@ -186,7 +187,12 @@ function ProjectCard({ project }: { project: any }) {
             {project.description}
           </p>
 
-          <div className="flex gap-4 text-2xl text-gray-500 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
+          {/* TECH STACK: Visible on Mobile, Slide-up on Desktop */}
+          <div
+            className="flex gap-4 text-2xl text-gray-500 transition-all duration-500 delay-75 
+            translate-y-0 opacity-100 
+            md:translate-y-8 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
+          >
             {project.tech.map((icon: any, idx: number) => (
               <div key={idx} className="hover:text-white transition-colors">
                 {icon}
@@ -196,6 +202,7 @@ function ProjectCard({ project }: { project: any }) {
         </div>
       </div>
 
+      {/* SCANLINE EFFECT */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden rounded-3xl transition-opacity duration-300">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,transparent,rgba(255,195,0,0.05),transparent)] -translate-y-full animate-scan"></div>
       </div>

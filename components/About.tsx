@@ -14,7 +14,6 @@ export function About() {
       id="about"
       className="py-24 px-6 bg-background relative overflow-hidden"
     >
-      {/* Background Decor (Subtle Grid) */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto relative z-10">
@@ -35,15 +34,14 @@ export function About() {
 
         {/* MAIN CONTENT GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* LEFT: THE BIO (Text) */}
           <div className="md:col-span-2 space-y-6">
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <p className="text-gray-300 leading-relaxed text-lg">
                 I found my path when I stopped looking for "the answer" and
                 started building it. To me,{" "}
                 <strong className="text-white">Computer Science</strong> became
-                more than just a major; it became the the toolkit I use to
-                navigate the world.
+                more than just a major; it became the toolkit I use to navigate
+                the world.
               </p>
 
               <p className="text-gray-400 leading-relaxed mt-4">
@@ -69,8 +67,7 @@ export function About() {
               </p>
             </div>
 
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <StatCard
                 label="Year Level"
                 value="2nd Year College"
@@ -78,8 +75,8 @@ export function About() {
               />
 
               <StatCard
-                label="Performance" //
-                value="3.72 Cumulative QPI" //
+                label="Performance"
+                value="3.72 QPI"
                 color="bg-primary/10 text-primary border-primary/20"
               />
 
@@ -145,13 +142,13 @@ function InfoBlock({
 }) {
   return (
     <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-colors">
-      <div className="mt-1 text-gray-400">{icon}</div>
-      <div>
+      <div className="mt-1 text-gray-400 shrink-0">{icon}</div>
+      <div className="min-w-0">
         <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1">
           {label}
         </h4>
-        <p className="text-white font-semibold">{value}</p>
-        <p className="text-gray-400 text-sm">{sub}</p>
+        <p className="text-white font-semibold leading-tight mb-0.5">{value}</p>
+        <p className="text-gray-400 text-sm leading-tight">{sub}</p>
       </div>
     </div>
   );
@@ -173,7 +170,7 @@ function StatCard({
       <h4 className="text-xs font-mono uppercase tracking-wider opacity-70 mb-1">
         {label}
       </h4>
-      <p className="font-bold text-lg">{value}</p>
+      <p className="font-bold text-base md:text-lg">{value}</p>
     </div>
   );
 }
