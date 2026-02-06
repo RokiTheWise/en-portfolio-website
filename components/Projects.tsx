@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
+import { useTransition } from "@/context/TransitionContext"; // <--- 1. IMPORT HOOK
 import {
   SiNextdotjs,
   SiTailwindcss,
@@ -86,6 +87,8 @@ const cardVariants: Variants = {
 };
 
 export function Projects() {
+  const { triggerTransition } = useTransition(); // <--- 2. USE HOOK
+
   return (
     <section id="projects" className="py-32 px-6 relative w-full">
       <motion.div
@@ -105,9 +108,10 @@ export function Projects() {
           </h2>
         </div>
 
-        <a
-          href="/archive"
-          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2"
+        {/* 3. UPDATED BUTTON WITH TRANSITION LOGIC */}
+        <button
+          onClick={() => triggerTransition("/archive")}
+          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2 cursor-pointer"
         >
           <span className="text-sm font-mono uppercase tracking-wider">
             View Project Archive
@@ -116,8 +120,9 @@ export function Projects() {
             size={18}
             className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
           />
-        </a>
+        </button>
       </motion.div>
+
       {/* GRID */}
       <motion.div
         variants={containerVariants}

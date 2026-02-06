@@ -12,22 +12,46 @@ import { Contact } from "@/components/Contact";
 import Preloader from "@/components/UI/Preloader";
 
 export default function Home() {
+  // 1. Main Content starts HIDDEN (true) so we don't see it yet
   const [isLoading, setIsLoading] = useState(true);
 
+  // 2. Preloader starts OFF (false) to prevent the "Double Door" glitch on return visits
+  const [showPreloader, setShowPreloader] = useState(false);
+
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
+    // Check session storage immediately
+    const hasBooted = sessionStorage.getItem("hasBooted");
+
+    if (hasBooted) {
+      // RETURNING VISITOR: Unlock site immediately, keep Preloader OFF
+      setIsLoading(false);
     } else {
-      document.body.style.overflow = "auto";
+      // NEW VISITOR: Turn Preloader ON
+      setShowPreloader(true);
     }
-  }, [isLoading]);
+  }, []);
+
+  // 3. Callback: Runs when the Preloader text sequence is done
+  const handleBootComplete = () => {
+    // A. Reveal the website (Render it behind the black doors)
+    setIsLoading(false);
+
+    // B. Trigger the Preloader "Exit" animation (Open the doors)
+    setShowPreloader(false);
+
+    // C. Mark as booted
+    sessionStorage.setItem("hasBooted", "true");
+  };
 
   return (
     <main className="bg-background min-h-screen text-white selection:bg-primary selection:text-background">
+      {/* PRELOADER SECTION */}
       <AnimatePresence mode="wait">
-        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+        {showPreloader && <Preloader onComplete={handleBootComplete} />}
       </AnimatePresence>
 
+      {/* MAIN WEBSITE */}
+      {/* Only visible when isLoading is false */}
       {!isLoading && (
         <>
           <Navbar />

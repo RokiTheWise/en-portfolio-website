@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { useTransition } from "@/context/TransitionContext";
 
 // --- THE ARCHIVE DATABASE ---
 const ARCHIVE = [
@@ -59,6 +59,8 @@ const rowVariants = {
 };
 
 export default function Archive() {
+  const { triggerTransition } = useTransition(); // <--- 2. USE HOOK
+
   return (
     <main className="min-h-screen bg-background text-white selection:bg-primary selection:text-background">
       <Navbar />
@@ -71,16 +73,17 @@ export default function Archive() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <Link
-            href="/#projects"
-            className="group inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-colors mb-6 text-sm font-mono uppercase tracking-wider"
+          {/* 3. UPDATED BACK BUTTON */}
+          <button
+            onClick={() => triggerTransition("/#projects")} // Triggers door close, then goes to home projects
+            className="group inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-colors mb-6 text-sm font-mono uppercase tracking-wider cursor-pointer"
           >
             <ArrowLeft
               size={16}
               className="group-hover:-translate-x-1 transition-transform"
             />
             Return to Base
-          </Link>
+          </button>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Project <span className="text-primary">Archive</span>
