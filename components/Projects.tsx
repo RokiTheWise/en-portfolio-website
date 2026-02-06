@@ -14,10 +14,10 @@ import {
 const PROJECTS = [
   {
     id: 1,
-    title: "Ace & Co. Website",
+    title: "Ace & Co. Accounting",
     category: "Professional Work",
     description:
-      "A website designed for an accounting firm, featuring a high-performance marketing front-end, seamless transitions, and a responsive design.",
+      "A comprehensive web solution for an accounting firm, featuring client portals, automated scheduling, and a high-performance marketing front-end.",
     tech: [
       <SiNextdotjs key="next" />,
       <SiTypescript key="ts" />,
@@ -25,8 +25,12 @@ const PROJECTS = [
     ],
     image: "/ACE.png",
     status: "Live",
-    href: "#",
-    isFeatured: true, // This makes it BIG
+
+    href: "https://www.aceandco.org",
+
+    githubUrl: null,
+
+    isFeatured: true,
   },
 ];
 
@@ -45,9 +49,10 @@ export function Projects() {
           </h2>
         </div>
 
+        {/* 👇 VIEW ARCHIVE BUTTON RESTORED HERE 👇 */}
         <a
-          href="/projects"
-          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors"
+          href="/archive" // Change this to your actual archive page route later
+          className="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors pb-2" // Added pb-2 to align visually with the large text
         >
           <span className="text-sm font-mono uppercase tracking-wider">
             View Archive
@@ -59,7 +64,7 @@ export function Projects() {
         </a>
       </div>
 
-      {/* BENTO GRID LAYOUT */}
+      {/* GRID */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {PROJECTS.map((project) => (
           <ProjectCard key={project.id} project={project} />
@@ -69,8 +74,8 @@ export function Projects() {
   );
 }
 
-// --- MICRO-COMPONENT: PROJECT CARD ---
-function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
+// --- UPDATED CARD COMPONENT ---
+function ProjectCard({ project }: { project: any }) {
   return (
     <div
       className={`group relative overflow-hidden rounded-3xl bg-surface border border-white/10 hover:border-primary/50 transition-all duration-500 ${
@@ -79,36 +84,54 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
           : "aspect-[4/3] md:aspect-[4/3]"
       }`}
     >
-      {/* 1. IMAGE BACKGROUND */}
-      <div className="absolute inset-0">
-        {/* Placeholder Color if image fails/is loading */}
-        <div className="absolute inset-0 bg-[#1a1a1a]" />
+      {/* 1. CLICKABLE CARD LINK (Optional: Makes whole card clickable) */}
+      <a
+        href={project.href}
+        target="_blank"
+        className="absolute inset-0 z-20"
+      />
 
+      {/* 2. IMAGE BACKGROUND */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#1a1a1a]" />
         <Image
           src={project.image}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-40"
         />
-        {/* Heavy Gradient Overlay so text is readable */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
       </div>
 
-      {/* 2. CONTENT OVERLAY */}
-      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start">
-        {/* Top Badges (Slide down on hover) */}
-        <div className="absolute top-6 right-6 flex gap-2 opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 z-20">
-          <button className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer">
-            <Github size={20} />
-          </button>
-          <button className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer">
+      {/* 3. CONTENT OVERLAY */}
+      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start pointer-events-none">
+        {/* BUTTONS (Now with Z-Index 30 to sit ABOVE the card link) */}
+        <div className="absolute top-6 right-6 flex gap-2 opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 z-30 pointer-events-auto">
+          {/* CONDITIONAL GITHUB BUTTON */}
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer"
+            >
+              <Github size={20} />
+            </a>
+          )}
+
+          {/* LIVE LINK BUTTON */}
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer"
+          >
             <ArrowUpRight size={20} />
-          </button>
+          </a>
         </div>
 
-        {/* Text Content */}
+        {/* TEXT CONTENT */}
         <div className="relative z-10 w-full transform transition-transform duration-500 group-hover:-translate-y-2">
-          {/* Tags */}
           <div className="flex items-center gap-3 mb-3">
             <span className="text-primary text-xs font-mono uppercase tracking-wider font-bold">
               {project.status}
@@ -127,9 +150,8 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
             {project.description}
           </p>
 
-          {/* Tech Stack (Slides up on hover) */}
           <div className="flex gap-4 text-2xl text-gray-500 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
-            {project.tech.map((icon, idx) => (
+            {project.tech.map((icon: any, idx: number) => (
               <div key={idx} className="hover:text-white transition-colors">
                 {icon}
               </div>
@@ -138,7 +160,6 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
         </div>
       </div>
 
-      {/* 3. SCANLINE ANIMATION (The Cyber Effect) */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden rounded-3xl transition-opacity duration-300">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,transparent,rgba(255,195,0,0.05),transparent)] -translate-y-full animate-scan"></div>
       </div>
