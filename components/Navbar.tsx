@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // <--- 1. Check current page
-import { useTransition } from "@/context/TransitionContext"; // <--- 2. Trigger Doors
+import { usePathname } from "next/navigation";
+import { useTransition } from "@/context/TransitionContext";
 import {
   Menu,
   X,
@@ -42,11 +42,9 @@ export function Navbar() {
     // CASE A: We are currently on the Home Page
     if (pathname === "/") {
       if (href === "/") {
-        // Clicking Logo -> Smooth scroll to top
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-      // Clicking Nav Links (e.g. "/#about") -> Default Next.js scroll behavior
       return;
     }
 
@@ -76,7 +74,7 @@ export function Navbar() {
           {/* LOGO */}
           <Link
             href="/"
-            onClick={(e) => handleNavigation(e, "/")} // <--- Attach Handler
+            onClick={(e) => handleNavigation(e, "/")}
             className="group flex items-center gap-2"
           >
             <div className="relative h-9 w-9 group-hover:rotate-12 transition-transform duration-300">
@@ -98,7 +96,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleNavigation(e, link.href)} // <--- Attach Handler
+                onClick={(e) => handleNavigation(e, link.href)}
                 className="relative text-sm font-medium text-gray-300 hover:text-primary transition-colors font-mono group"
               >
                 <span className="absolute -left-3 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
@@ -112,7 +110,6 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* SOCIALS & RESUME (Standard Links - No transition needed usually) */}
           <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-4 border-r border-white/10 pr-5">
               <SocialIcon

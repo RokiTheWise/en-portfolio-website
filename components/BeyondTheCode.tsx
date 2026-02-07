@@ -31,7 +31,7 @@ const MODULES = [
   {
     id: "research",
     icon: <Microscope size={24} />,
-    title: "Scientific Method",
+    title: "Research Oriented",
     subtitle: "Research Background",
     description:
       "Applying empirical analysis from marine bio studies to code optimization.",
