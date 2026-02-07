@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // <--- 1. Check current page
+import { useTransition } from "@/context/TransitionContext"; // <--- 2. Trigger Doors
 import {
   Menu,
   X,
@@ -19,6 +21,9 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const pathname = usePathname();
+  const { triggerTransition } = useTransition();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -26,6 +31,30 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // --- THE LOGIC ---
+  const handleNavigation = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    setIsMobileMenuOpen(false);
+
+    // CASE A: We are currently on the Home Page
+    if (pathname === "/") {
+      if (href === "/") {
+        // Clicking Logo -> Smooth scroll to top
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      // Clicking Nav Links (e.g. "/#about") -> Default Next.js scroll behavior
+      return;
+    }
+
+    // CASE B: We are on the Archive Page (or any other page)
+    // We want the cool Door Animation to play before leaving
+    e.preventDefault();
+    triggerTransition(href);
+  };
 
   const navLinks = [
     { name: "About", href: "/#about" },
@@ -44,8 +73,12 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          {/* 1. LOGO */}
-          <Link href="/" className="group flex items-center gap-2">
+          {/* LOGO */}
+          <Link
+            href="/"
+            onClick={(e) => handleNavigation(e, "/")} // <--- Attach Handler
+            className="group flex items-center gap-2"
+          >
             <div className="relative h-9 w-9 group-hover:rotate-12 transition-transform duration-300">
               <Image
                 src="/LogoLightTrans.png"
@@ -59,12 +92,13 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* 2. DESKTOP NAV */}
+          {/* DESKTOP NAV */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavigation(e, link.href)} // <--- Attach Handler
                 className="relative text-sm font-medium text-gray-300 hover:text-primary transition-colors font-mono group"
               >
                 <span className="absolute -left-3 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
@@ -78,9 +112,8 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* 3. SOCIALS & RESUME */}
+          {/* SOCIALS & RESUME (Standard Links - No transition needed usually) */}
           <div className="hidden md:flex items-center gap-5">
-            {/* Social Icons (Restored) */}
             <div className="flex items-center gap-4 border-r border-white/10 pr-5">
               <SocialIcon
                 href="https://github.com/RokiTheWise"
@@ -104,7 +137,6 @@ export function Navbar() {
               />
             </div>
 
-            {/* Resume Button */}
             <a
               href="/resume.pdf"
               target="_blank"
@@ -138,11 +170,12 @@ export function Navbar() {
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6 text-center">
+              {/* MOBILE LINKS also need the handler */}
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleNavigation(e, link.href)} // <--- Attach Handler
                   className="text-2xl font-bold text-white hover:text-primary transition-colors font-mono"
                 >
                   {link.name}
@@ -183,7 +216,7 @@ export function Navbar() {
   );
 }
 
-// --- HELPER COMPONENTS (Keeps main code clean) ---
+// --- HELPER COMPONENTS ---
 function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
   return (
     <a

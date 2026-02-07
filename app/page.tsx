@@ -43,6 +43,26 @@ export default function Home() {
     sessionStorage.setItem("hasBooted", "true");
   };
 
+  // 4. NEW: Handle Hash Scroll (e.g., coming from /archive to /#projects)
+  useEffect(() => {
+    // Only attempt to scroll once the loading is finished and content is visible
+    if (!isLoading) {
+      const hash = window.location.hash;
+
+      if (hash) {
+        // Wait a tiny bit (100ms) for the DOM to fully paint the new content
+        setTimeout(() => {
+          const id = hash.replace("#", ""); // Remove the '#' char
+          const element = document.getElementById(id);
+
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    }
+  }, [isLoading]); // Runs whenever isLoading changes to false
+
   return (
     <main className="bg-background min-h-screen text-white selection:bg-primary selection:text-background">
       {/* PRELOADER SECTION */}
