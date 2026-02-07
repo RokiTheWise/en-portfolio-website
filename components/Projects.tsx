@@ -34,25 +34,9 @@ const PROJECTS = [
     githubUrl: null,
     isFeatured: true,
   },
+
   {
     id: 2,
-    title: "Portfolio V1",
-    category: "Personal Identity",
-    description:
-      "Designed to breakaway from standard portfolio templates, using a techonology-based aesthetic and immersive interactions to create a unique personal brand experience.",
-    tech: [
-      <SiNextdotjs key="next" />,
-      <SiTypescript key="ts" />,
-      <SiTailwindcss key="tw" />,
-    ],
-    image: "/PortfolioShot.png",
-    status: "Live",
-    href: "/",
-    githubUrl: "https://github.com/RokiTheWise/en-portfolio-website",
-    isFeatured: false,
-  },
-  {
-    id: 3,
     title: "Majority Voter Circuit",
     category: "Electronics",
     description:
@@ -62,7 +46,7 @@ const PROJECTS = [
     status: "Live",
     href: "https://www.tinkercad.com/things/55OzGJMnEK3-3-input-majority-voter",
     githubUrl: null,
-    isFeatured: false,
+    isFeatured: true,
   },
 ];
 
