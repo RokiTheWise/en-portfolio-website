@@ -4,7 +4,7 @@ import "./globals.css";
 import { TransitionProvider } from "@/context/TransitionContext";
 import CyberDoors from "@/components/UI/CyberDoors";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +16,67 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dexter Jethro Enriquez",
+  url: "https://djenriquez.dev",
+  jobTitle: "Software Developer",
+  alumniOf: "Ateneo de Manila University",
+  sameAs: [
+    "https://github.com/RokiTheWise",
+    "https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/",
+    "https://www.instagram.com/dexjet_enriquez/",
+    "https://www.facebook.com/dexterjethro.enriquez",
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "DexDev - Developer Portfolio",
+  metadataBase: new URL("https://djenriquez.dev"),
+  title: {
+    default: "Dexter Jethro Enriquez | Software Developer",
+    template: "%s | Dexter Jethro Enriquez",
+  },
   description:
-    "Welcome to Dexter Jethro Enriquez's developer portfolio. Explore my projects, skills, and journey in the world of software development.",
+    "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student. Explore projects, skills, and contact information.",
+  keywords: [
+    "Next.js",
+    "React",
+    "Portfolio",
+    "Software Developer",
+    "Web Development",
+    "Digital Logic",
+    "Dexter Jethro Enriquez",
+    "Dexter Enriquez",
+    "Dexter Jethro",
+    "DJ Enriquez",
+    "djenriquez",
+  ],
+  authors: [{ name: "Dexter Jethro Enriquez" }],
+  creator: "Dexter Jethro Enriquez",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Dexter Jethro Enriquez | Software Developer",
+    description:
+      "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student.",
+    url: "https://djenriquez.dev",
+    siteName: "Dexter Jethro Enriquez",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +86,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body
+        className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true}
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <TransitionProvider>
           <CyberDoors />
           {children}
