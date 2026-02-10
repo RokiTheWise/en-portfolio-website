@@ -24,7 +24,7 @@ const ARCHIVE = [
     madeAt: "Personal Identity",
     tech: ["Next.js", "TypeScript", "GSAP", "Tailwind"],
     link: "/",
-    github: "https://github.com/RokiTheWise/portfolio-v1",
+    github: "https://github.com/RokiTheWise/en-portfolio-website.git",
     image: "/PortfolioShot.png",
   },
   {
