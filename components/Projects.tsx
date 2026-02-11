@@ -37,6 +37,23 @@ const PROJECTS = [
 
   {
     id: 2,
+    title: "LogiSketch | Visualize Boolean Logic",
+    category: "Electronics & Digital Logic",
+    description:
+      "Converts Boolean equations to interactive circuits, generate truth tables, and simplify logic instantly.",
+    tech: [
+      <SiNextdotjs key="next" />,
+      <SiTypescript key="ts" />,
+      <SiTailwindcss key="tw" />,
+    ],
+    image: "/LogiSketch.png",
+    status: "Live",
+    href: " https://logisketch.djenriquez.dev/",
+    githubUrl: "https://github.com/RokiTheWise/CircuitBuilder",
+    isFeatured: false,
+  },
+  {
+    id: 3,
     title: "Majority Voter Circuit",
     category: "Electronics",
     description:
@@ -46,7 +63,7 @@ const PROJECTS = [
     status: "Live",
     href: "https://www.tinkercad.com/things/55OzGJMnEK3-3-input-majority-voter",
     githubUrl: null,
-    isFeatured: true,
+    isFeatured: false,
   },
 ];
 
