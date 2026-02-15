@@ -45,6 +45,14 @@ const ARCHIVE = [
     github: null,
     image: "/Circuit.png",
   },
+  {
+    year: "2024",
+    project: "Project Wurdle | Terminal Word Guessing Game",
+    madeAt: "Computer Science Fundamentals",
+    tech: ["Python", "Algorithms"],
+    github: "https://github.com/RokiTheWise/Project-Wurdle.git",
+    image: "/ProjectWurdle.png",
+  },
 ];
 
 // --- ANIMATION CONFIG ---
