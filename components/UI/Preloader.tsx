@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
-  const [text, setText] = useState("INITIALIZING Portfolio...");
+  const [text, setText] = useState("INITIALIZING PORTFOLIO...");
 
   useEffect(() => {
     const timer1 = setTimeout(() => setText("VERIFYING BIOMETRICS..."), 800);

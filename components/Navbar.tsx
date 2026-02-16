@@ -135,7 +135,7 @@ export function Navbar() {
             </div>
 
             <a
-              href="/resume.pdf"
+              href="Enriquez_DexterJethro_CV.pdf"
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 rounded bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-white hover:bg-primary hover:text-black hover:border-primary transition-all group"
             >
