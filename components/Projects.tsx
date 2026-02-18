@@ -13,6 +13,7 @@ import {
   SiReact,
   SiFramer,
   SiTinkercad,
+  SiPython,
 } from "react-icons/si";
 
 // --- DATA ---
@@ -54,15 +55,15 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: "Majority Voter Circuit",
-    category: "Electronics",
+    title: "Project Wurdle | Terminal Word Guessing Game",
+    category: "Computer Science Fundamentals",
     description:
-      "A digital logic circuit designed to implement a majority voter function using Tinkercad.",
-    tech: [<SiTinkercad key="tinkercad" />],
-    image: "/Circuit.png",
+      "A terminal-based reconstruction of the game Wordle, developed to demonstrate fundamental algorithmic logic.",
+    tech: [<SiPython key="python" />],
+    image: "/ProjectWurdle.png",
     status: "Live",
-    href: "https://www.tinkercad.com/things/55OzGJMnEK3-3-input-majority-voter",
-    githubUrl: null,
+    href: "https://github.com/RokiTheWise/Project-Wurdle.git",
+    githubUrl: "https://github.com/RokiTheWise/Project-Wurdle.git",
     isFeatured: false,
   },
 ];
