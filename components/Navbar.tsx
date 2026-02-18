@@ -200,7 +200,7 @@ export function Navbar() {
               </div>
 
               <a
-                href="/resume.pdf"
+                href="Enriquez_DexterJethro_CV.pdf"
                 className="w-full py-4 mt-4 rounded-xl bg-primary text-background font-bold text-lg hover:bg-[#FFD54F] transition-colors"
               >
                 Download Resume
