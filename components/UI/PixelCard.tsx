@@ -25,6 +25,8 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
   const pixelGridRef = useRef<HTMLDivElement | null>(null);
   const activeRef = useRef<HTMLDivElement | null>(null);
 
+  const firstContentRef = useRef<HTMLDivElement | null>(null);
+
   // 1. Swapped out delayedCall for a timeline reference
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -90,8 +92,14 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
     // PHASE 2: The Swap
     // This ONLY fires when Phase 1 is 100% complete
     tlRef.current.call(() => {
+      // Show/Hide Image
       activeEl.style.display = activate ? "block" : "none";
       activeEl.style.pointerEvents = activate ? "none" : "";
+
+      // NEW: Hide/Show Text to prevent bleed-through while image lazy loads
+      if (firstContentRef.current) {
+        firstContentRef.current.style.display = activate ? "none" : "block";
+      }
     });
 
     // PHASE 3: Reveal the content
@@ -122,7 +130,10 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
         }
       }}
     >
-      <div className="absolute inset-0 w-full h-full">{firstContent}</div>
+      {/* NEW: Added ref right here */}
+      <div ref={firstContentRef} className="absolute inset-0 w-full h-full">
+        {firstContent}
+      </div>
 
       <div
         ref={activeRef}

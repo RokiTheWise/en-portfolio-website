@@ -132,7 +132,7 @@ export function BeyondTheCode() {
                   </div>
                 }
                 secondContent={
-                  <div className="relative h-full w-full">
+                  <div className="relative h-full w-full bg-black">
                     <Image
                       src={mod.image}
                       alt={mod.title}
