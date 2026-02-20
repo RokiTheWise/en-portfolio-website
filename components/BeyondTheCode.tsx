@@ -40,7 +40,6 @@ const MODULES = [
   },
 ];
 
-// Animation Variants (Reuse these for consistency)
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -77,9 +76,8 @@ export function BeyondTheCode() {
           </h2>
           <p className="text-gray-400">
             A system is only as good as its operator.{" "}
-            <span className="hidden md:inline">Hover</span>
-            <span className="md:hidden">Tap</span> to decrypt the human data
-            files.
+            <span className="text-primary font-bold">Click or tap</span> to
+            decrypt the human data files.
           </p>
         </motion.div>
 
@@ -93,10 +91,9 @@ export function BeyondTheCode() {
           {MODULES.map((mod) => (
             <motion.div key={mod.id} variants={cardVariants}>
               <PixelCard
-                className="h-[400px] md:h-[450px] w-full bg-white/5 border border-white/10 hover:border-primary/50"
+                className="h-[400px] md:h-[450px] w-full bg-white/5 border border-white/10 hover:border-primary/50 transition-colors"
                 gridSize={25}
                 pixelColor="#FFC300"
-                // 1. THE TEXT CARD
                 firstContent={
                   <div className="h-full w-full p-6 md:p-8 flex flex-col justify-between">
                     <div>
@@ -109,7 +106,6 @@ export function BeyondTheCode() {
                         </div>
                       </div>
 
-                      {/* UPGRADE: Decrypted Title */}
                       <h3 className="text-xl font-bold text-white mb-1 h-8 flex items-center">
                         <DecryptedText
                           text={mod.title}
@@ -131,12 +127,10 @@ export function BeyondTheCode() {
 
                     <div className="flex items-center gap-2 text-primary/50 text-xs font-mono uppercase">
                       <div className="w-2 h-2 bg-primary/50 rounded-full animate-pulse"></div>
-                      <span className="md:hidden">Tap to reveal image</span>
-                      <span className="hidden md:inline">Hover to Reveal</span>
+                      <span>Click to Reveal File</span>
                     </div>
                   </div>
                 }
-                // 2. THE PHOTO EVIDENCE
                 secondContent={
                   <div className="relative h-full w-full">
                     <Image

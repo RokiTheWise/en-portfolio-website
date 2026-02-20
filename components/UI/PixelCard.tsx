@@ -24,7 +24,9 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pixelGridRef = useRef<HTMLDivElement | null>(null);
   const activeRef = useRef<HTMLDivElement | null>(null);
-  const delayedCallRef = useRef<gsap.core.Tween | null>(null);
+
+  // 1. Swapped out delayedCall for a timeline reference
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -52,6 +54,9 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
   }, [gridSize, pixelColor]);
 
   const animatePixels = (activate: boolean): void => {
+    // Prevent re-triggering if clicking too fast on the same state
+    if (isActive === activate) return;
+
     setIsActive(activate);
 
     const pixelGridEl = pixelGridRef.current;
@@ -61,34 +66,40 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
     const pixels = pixelGridEl.querySelectorAll<HTMLDivElement>(".pixel");
     if (!pixels.length) return;
 
+    // 2. Kill the active timeline and any tweens if the user rapidly clicks
     gsap.killTweensOf(pixels);
-    if (delayedCallRef.current) delayedCallRef.current.kill();
+    if (tlRef.current) tlRef.current.kill();
 
+    // Reset pixels before starting the sequence
     gsap.set(pixels, { display: "none" });
 
-    const totalPixels = pixels.length;
-    const staggerDuration = animationStepDuration / totalPixels;
+    // 3. Create a strict sequential timeline
+    tlRef.current = gsap.timeline();
 
-    gsap.to(pixels, {
+    // PHASE 1: Cover the screen
+    // Using 'amount' lets GSAP handle the timing distribution perfectly
+    tlRef.current.to(pixels, {
       display: "block",
       duration: 0,
       stagger: {
-        each: staggerDuration,
+        amount: animationStepDuration,
         from: "random",
       },
     });
 
-    delayedCallRef.current = gsap.delayedCall(animationStepDuration, () => {
+    // PHASE 2: The Swap
+    // This ONLY fires when Phase 1 is 100% complete
+    tlRef.current.call(() => {
       activeEl.style.display = activate ? "block" : "none";
       activeEl.style.pointerEvents = activate ? "none" : "";
     });
 
-    gsap.to(pixels, {
+    // PHASE 3: Reveal the content
+    tlRef.current.to(pixels, {
       display: "none",
       duration: 0,
-      delay: animationStepDuration,
       stagger: {
-        each: staggerDuration,
+        amount: animationStepDuration,
         from: "random",
       },
     });
@@ -97,13 +108,19 @@ const PixelCard: React.FC<PixelTransitionProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-2xl ${className}`}
+      // Added cursor-pointer so the mouse turns into a hand, implying it is clickable
+      className={`relative overflow-hidden rounded-2xl cursor-pointer ${className}`}
       style={style}
-      onMouseEnter={() => animatePixels(true)}
-      onMouseLeave={() => animatePixels(false)}
-      onFocus={() => animatePixels(true)}
-      onBlur={() => animatePixels(false)}
+      // Replaced hover events with a clean click toggle
+      onClick={() => animatePixels(!isActive)}
       tabIndex={0}
+      // Added keyboard support for accessibility (Enter/Space to trigger)
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          animatePixels(!isActive);
+        }
+      }}
     >
       <div className="absolute inset-0 w-full h-full">{firstContent}</div>
 
