@@ -37,7 +37,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-2xl animate-pulse"></div>
             <div className="relative w-full h-full rounded-2xl border border-white/10 bg-white/5 overflow-hidden shadow-2xl">
               <Image
-                src="/PortPic2.png"
+                src="/HeroProfile.png"
                 alt="Dexter"
                 fill
                 className="object-cover brightness-90 sepia-[.2] group-hover:sepia-0 group-hover:brightness-100 transition-all duration-500"
@@ -105,7 +105,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           className="hidden md:flex justify-end relative"
         >
-          <TechCard avatarUrl="/PortPic2.png" themeColor="#FFC300" />
+          <TechCard avatarUrl="/HeroProfile.png" themeColor="#FFC300" />
         </motion.div>
       </div>
 
