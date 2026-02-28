@@ -13,6 +13,7 @@ import {
   SiVercel,
   SiGithub,
   SiVite,
+  SiSupabase,
 } from "react-icons/si";
 import { Coffee } from "lucide-react";
 
@@ -32,6 +33,7 @@ const ECOSYSTEM = [
   { icon: <SiGit />, name: "Git", tag: "Version" },
   { icon: <SiGithub />, name: "GitHub", tag: "Repo" },
   { icon: <SiVercel />, name: "Vercel", tag: "Deploy" },
+  { icon: <SiSupabase />, name: "Supabse", tag: "Database" },
 ];
 
 // --- ANIMATION VARIANTS ---
