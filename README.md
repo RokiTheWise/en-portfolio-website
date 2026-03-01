@@ -21,14 +21,14 @@ I designed this site to break away from standard "Resume" templates while honing
 
 ## Key Features
 
-- **Bento Grid Layout:** A responsive, CSS-grid based showcase for projects (Ace & Co, etc.).
+- **Bento Grid Layout:** A responsive, CSS-grid based showcase for projects.
 - **Pixel Transitions:** Custom GSAP animation for revealing "Offline Capabilities" (Photos).
 - **Glitch/Scanline Effects:** CSS-based animations to reinforce the "System Operator" aesthetic.
 - **Responsive Design:** Fully optimized for mobile (iPhone SE) to Desktop (4K).
 
 ## Local Initialization
 
-If you wish to run this system locally for inspection:
+If you wish to run this system locally:
 
 ```bash
 # 1. Clone the repository
