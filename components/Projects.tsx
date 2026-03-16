@@ -55,15 +55,15 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: "Project Wurdle | Terminal Word Guessing Game",
-    category: "Computer Science Fundamentals",
+    title: "Aklatang Galera — Knowledge for every Galeran",
+    category: "Personal Community Project",
     description:
-      "A terminal-based reconstruction of the game Wordle, developed to demonstrate fundamental algorithmic logic.",
+      "A localized digital portal designed to bridge the gap between knowledge, opportunity, and public services for the people of Puerto Galera.",
     tech: [<SiPython key="python" />],
-    image: "/ProjectWurdle.png",
+    image: "/Aklatang-Galera.png",
     status: "Live",
-    href: "https://github.com/RokiTheWise/Project-Wurdle.git",
-    githubUrl: "https://github.com/RokiTheWise/Project-Wurdle.git",
+    href: "https://aklatang-galera.djenriquez.dev/",
+    githubUrl: "https://github.com/RokiTheWise/aklatang-galera",
     isFeatured: false,
   },
 ];

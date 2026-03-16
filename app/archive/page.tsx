@@ -11,6 +11,15 @@ import { useTransition } from "@/context/TransitionContext";
 const ARCHIVE = [
   {
     year: "2026",
+    project: "Aklatang Galera — Knowledge for every Galeran",
+    madeAt: "Personal Community Project",
+    tech: ["Next.js", "TypeScript", "Tailwind"],
+    link: "https://aklatang-galera.djenriquez.dev/",
+    github: "https://github.com/RokiTheWise/aklatang-galera",
+    image: "/Aklatang-Galera.png",
+  },
+  {
+    year: "2026",
     project: "LogiSketch | Visualize Boolean Logic",
     madeAt: "Electronics & Web Development",
     tech: ["Next.js", "TypeScript", "Tailwind"],
