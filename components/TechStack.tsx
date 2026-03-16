@@ -14,6 +14,7 @@ import {
   SiGithub,
   SiVite,
   SiSupabase,
+  SiDjango,
 } from "react-icons/si";
 import { Coffee } from "lucide-react";
 
@@ -33,7 +34,8 @@ const ECOSYSTEM = [
   { icon: <SiGit />, name: "Git", tag: "Version" },
   { icon: <SiGithub />, name: "GitHub", tag: "Repo" },
   { icon: <SiVercel />, name: "Vercel", tag: "Deploy" },
-  { icon: <SiSupabase />, name: "Supabse", tag: "Database" },
+  { icon: <SiSupabase />, name: "Supabase", tag: "Database" },
+  { icon: <SiDjango />, name: "Django", tag: "Web Framework" },
 ];
 
 // --- ANIMATION VARIANTS ---
