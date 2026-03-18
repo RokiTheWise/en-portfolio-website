@@ -115,22 +115,27 @@ export function Navbar() {
               <SocialIcon
                 href="https://github.com/RokiTheWise"
                 icon={<Github size={18} />}
+                label="GitHub Profile"
               />
               <SocialIcon
                 href="https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/"
                 icon={<Linkedin size={18} />}
+                label="LinkedIn Profile"
               />
               <SocialIcon
                 href="https://www.instagram.com/dexjet_enriquez/"
                 icon={<Instagram size={18} />}
+                label="Instagram Profile"
               />
               <SocialIcon
                 href="https://www.facebook.com/dexterjethro.enriquez/"
                 icon={<Facebook size={18} />}
+                label="Facebook Profile"
               />
               <SocialIcon
                 href="mailto:dexterjethro.enriquez@gmail.com"
                 icon={<Mail size={18} />}
+                label="Send Email"
               />
             </div>
 
@@ -184,18 +189,22 @@ export function Navbar() {
                 <SocialIconMobile
                   href="https://github.com/RokiTheWise"
                   icon={<Github size={24} />}
+                  label="GitHub Profile"
                 />
                 <SocialIconMobile
                   href="https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/"
                   icon={<Linkedin size={24} />}
+                  label="LinkedIn Profile"
                 />
                 <SocialIconMobile
                   href="https://www.instagram.com/dexjet_enriquez/"
                   icon={<Instagram size={24} />}
+                  label="Instagram Profile"
                 />
                 <SocialIconMobile
                   href="https://www.facebook.com/dexterjethro.enriquez/"
                   icon={<Facebook size={24} />}
+                  label="Facebook Profile"
                 />
               </div>
 
@@ -214,12 +223,21 @@ export function Navbar() {
 }
 
 // --- HELPER COMPONENTS ---
-function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
+function SocialIcon({
+  href,
+  icon,
+  label,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={label}
       className="text-gray-400 hover:text-white hover:scale-110 transition-all"
     >
       {icon}
@@ -230,15 +248,18 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
 function SocialIconMobile({
   href,
   icon,
+  label,
 }: {
   href: string;
   icon: React.ReactNode;
+  label: string;
 }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={label}
       className="text-gray-400 hover:text-primary transition-colors"
     >
       {icon}

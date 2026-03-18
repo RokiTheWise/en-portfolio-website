@@ -20,9 +20,25 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Dexter Jethro Enriquez",
+  alternateName: "DJ Enriquez",
   url: "https://djenriquez.dev",
+  image: "https://djenriquez.dev/HeroProfile.png",
   jobTitle: "Software Developer",
-  alumniOf: "Ateneo de Manila University",
+  description:
+    "Software Developer and Computer Science student at Ateneo de Manila University specializing in Full-stack Web Development.",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Ateneo de Manila University",
+  },
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Digital Logic",
+    "Web Development",
+    "Software Engineering",
+  ],
   sameAs: [
     "https://github.com/RokiTheWise",
     "https://www.linkedin.com/in/dexter-jethro-enriquez-982a062ab/",
@@ -38,7 +54,7 @@ export const metadata: Metadata = {
     template: "%s | Dexter Jethro Enriquez",
   },
   description:
-    "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student. Explore projects, skills, and contact information.",
+    "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student and Software Developer. Explore projects, skills, and contact information.",
   keywords: [
     "Next.js",
     "React",
@@ -51,20 +67,41 @@ export const metadata: Metadata = {
     "Dexter Jethro",
     "DJ Enriquez",
     "djenriquez",
+    "Ateneo de Manila University",
+    "Full-stack Developer",
+    "TypeScript",
+    "Frontend Engineer",
   ],
-  authors: [{ name: "Dexter Jethro Enriquez" }],
+  authors: [{ name: "Dexter Jethro Enriquez", url: "https://djenriquez.dev" }],
   creator: "Dexter Jethro Enriquez",
+  themeColor: "#FFC300",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Dexter Jethro Enriquez | Software Developer",
     description:
-      "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student.",
+      "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student and Software Developer specializing in Next.js and React.",
     url: "https://djenriquez.dev",
     siteName: "Dexter Jethro Enriquez",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dexter Jethro Enriquez Portfolio",
+      },
+    ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dexter Jethro Enriquez | Software Developer",
+    description:
+      "Developer portfolio of Dexter Jethro Enriquez, a Computer Science student and Software Developer.",
+    images: ["/twitter-image.png"],
+    creator: "@RokiTheWise",
   },
   robots: {
     index: true,

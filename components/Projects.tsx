@@ -159,6 +159,7 @@ function ProjectCard({ project }: { project: any }) {
       <a
         href={project.href}
         target="_blank"
+        aria-label={`View ${project.title} project`}
         className="absolute inset-0 z-20"
       />
 
@@ -187,6 +188,7 @@ function ProjectCard({ project }: { project: any }) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`View ${project.title} source code on GitHub`}
               className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer"
             >
               <Github size={20} />
@@ -197,6 +199,7 @@ function ProjectCard({ project }: { project: any }) {
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`Open ${project.title} live demo`}
             className="p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:text-primary hover:border-primary transition-colors cursor-pointer"
           >
             <ArrowUpRight size={20} />

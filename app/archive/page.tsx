@@ -85,7 +85,7 @@ const rowVariants = {
 };
 
 export default function Archive() {
-  const { triggerTransition } = useTransition(); // <--- 2. USE HOOK
+  const { triggerTransition } = useTransition();
 
   return (
     <main className="min-h-screen bg-background text-white selection:bg-primary selection:text-background">
